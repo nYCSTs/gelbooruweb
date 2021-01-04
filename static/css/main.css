@@ -1,0 +1,61 @@
+body {
+    background: url('https://img2.gelbooru.com//images/82/b9/82b98ff5c666ee310947c8c0a61069cf.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 90vh;
+    zoom: 0.9;
+}
+
+
+h1 {
+    font-size: 48px;
+}
+
+input {
+    margin: 0px 5px 10px 0px;
+}
+
+.tags {
+    width: 450px;
+}
+
+label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+select, input {
+    height: 21px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+input[type=submit] {
+    cursor: pointer;
+    margin: 4px 2px;
+    width: 80px;
+    text-decoration: none;
+    color: black
+}
+
+.pesquisar {
+    height:20px; 
+    width:90px;
+}
+
+.pesquisar:hover {
+    background-color: yellowgreen;
+}

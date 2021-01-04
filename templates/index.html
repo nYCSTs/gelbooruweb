@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Gelbooru Searcher</title>
+<link rel='icon' href='https://gelbooru.com/favicon.png'>
+{% endblock %}
+
+{% block body %}
+<div class='content'>
+  <h1> Gelbooru Searcher </h1>  
+  <div class='barra-pesquisa'>
+    <form method="POST"> 
+      <label for='nome'>Nome/Anime: </label>
+      <input class='nome' type='text' autocomplete="off" name='nome' placeholder="Vazio para não especificar">
+      <label for='rating'>Rating: </label>
+      <select name='rating'>
+        <option value=''>Não especificar</option>
+        <option value="rating%3Asafe+">Seguro</option>
+        <option value="rating%3Aquestionable+">Questionavel</option>
+        <option value="rating%3Aexplicit+">Explicito</option>
+      </select>
+      <br>
+      <input class='tags' type="text" autocomplete="off" name='tags' placeholder="Separe as tags com virgula. Vazio para não especificar">
+      <br>
+      <input class='pesquisar' type='submit' value='Pesquisar' formtarget="_blank">
+    </form>
+  </div>
+</div>
+{% endblock %}
