@@ -1,0 +1,96 @@
+body {
+    background: url('../image/wallpaper-index.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: black;
+    font-weight: bold;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 90vh;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+input {
+    margin: 5px;
+}
+
+.barra-pesquisa {
+    font-size: 20px;
+    color: black;
+}
+
+.tags {
+    width: 400px;
+}
+
+.pesquisar {
+    height:20px; 
+    width:90px;
+    cursor: pointer;
+    margin-top: 8px;
+    width: 80px;
+    border: solid 1px;
+    border-radius: 5px;
+}
+
+label {
+    padding-right: 2px;
+}
+
+.pesquisar:hover {
+    background-color: dodgerblue;
+}
+
+.nome {
+    width: 250px;
+}
+
+.buscador {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: solid 1px;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    border-radius: 12px;
+    font-size: 16px;
+    text-align: right;
+}
+
+@media (max-width: 450px) {
+    body {
+        background: url("../image/wallpaper-smartphone.jpg") center center fixed;
+        background-size: cover;
+        background-position: center center;  
+        background-size: cover; 
+    }
+    
+    h1 {
+        font-size: 32px;
+    }
+
+    .barra-pesquisa {
+        font-size: 18px;
+        padding: 0 15px;
+    }
+
+    .tags {
+        width: 250px;
+    }
+}

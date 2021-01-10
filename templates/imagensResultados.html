@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Resultados</title>
+<link rel='stylesheet' href="css/resultados.css">
+<link rel='icon' href="https://gelbooru.com/favicon.png">
+<link rel='stylesheet' href='{{ url_for("static", filename="css/imagensResultados.css") }}'>
+{% endblock %}
+
+
+{% block body %}
+
+<h1>Resultados: </h1>
+{% for resultado in resultados %}
+    <div class='resultados'>
+        <img src='{{resultado["enderecoFinal"]}}'> <a href='{{resultado["linkPostOriginal"]}}'>{{resultado["linkPostOriginal"]}}</a>
+        <br>
+    </div>
+{% endfor %}
+
+{% endblock %}

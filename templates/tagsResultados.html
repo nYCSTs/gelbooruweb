@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block head %}
+<title> Resultado da Pesquisa </title>
+<link rel='stylesheet' href='{{ url_for("static", filename="css/tagsResultados.css") }}'>
+{% endblock %}
+
+{% block body %}
+
+    <div class='titulo'>
+        <h1>Resultados</h1>
+        <form action="/">
+            <button class='botao' type="submit">Voltar</button>
+        </form>
+        <form action="/buscador">
+            <button style='width: 120px;' class='botao' type="submit">Nova Pesquisa</button>
+        </form>
+    </div>
+
+    {% autoescape off %}
+        {{ html }}
+    {% endautoescape %}
+
+{% endblock %}

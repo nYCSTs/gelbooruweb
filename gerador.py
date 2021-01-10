@@ -14,13 +14,22 @@ def arrumarSimbolos(name):
 
 #FORMA A URL
 def obterURL(name, rating, tags):
-    url = 'https://gelbooru.com/index.php?page=post&s=list&tags='
-    url += arrumarSimbolos(name.replace(' ', '_')) + '+'
-    url += rating
+    origUrl = 'https://gelbooru.com/index.php?page=post&s=list&tags='
+    parteNome = arrumarSimbolos(name.replace(' ', '_')) + '+' 
     for tag in tags:
-        url += tag.strip().replace(' ', '_') + '+'
+        parteTags = tag.strip().replace(' ', '_') + '+'
 
-    return url
+    url = origUrl + parteNome + rating + parteTags
+    if (verificarValidade(obterHTML(url))):
+        return url
+    elif (name != ''):
+        name = name.split(' ')
+        if (len(name) == 2):
+            parteNome = arrumarSimbolos(name[1] + '_' + name[0]) + '+'
+            url = origUrl + parteNome + rating + parteTags
+            if (verificarValidade(url)):
+                return url
+    return -1
 
 #GERA HTML
 def obterHTML(url):
@@ -32,16 +41,19 @@ def obterHTML(url):
 
 #QUANTIDADE DE PAGINAS
 def obterQuantidadeDePaginas(html):
-    element = str(html.find_all('div', 'pagination')).split('<a')[-1]
-    if (len(element) == 32):
-        return 1
-    elif (element.find('last page') != -1):
-        quantidade = (int(element[element.find('amp;pid=') + 8:element.rfind('">')]) / 42) + 1
-        if (quantidade > 477):
+    element = str(html.find_all('div', 'pagination')).split('<a ')[-1]
+    if (element.find('last page') != -1):
+        quantidade = element[element.find('&amp;pid=') + 9:element.find('">»</a>')]
+        quantidade = (int(quantidade) / 42) + 1
+        if quantidade > 477:
             return 477
-        return quantidade
+        else:
+            return quantidade
+    elif (element.find('<b>1</b>') != -1):
+        return 1
     else:
-        return int(element[element.rfind('">') + 2:element.rfind('</a>')])
+        quantidade = int(element[element.rfind('">') + 2:element.find('</a>')])
+        return quantidade
 
 #QUANTIDADE TOTAL DE IMAGENS
 def obterQuantidadeDeImagens(url, quantidadeDePaginas):
@@ -59,39 +71,38 @@ def verificarValidade(html):
 
 #OBTEM O LINK DA IMAGEM RANDOM
 def obterImagemRandomica(origUrl):
+    if origUrl == -1:
+        return origUrl
     html = obterHTML(origUrl)
-    if (verificarValidade(html)):
-        imagens = np.arange(0, obterQuantidadeDeImagens(origUrl, obterQuantidadeDePaginas(html)))
-        for _ in range(1):
-            imagemSorteada = int(np.random.choice(imagens, 1))
-            #REMOVE DA LISTA DE IMAGENS
-            imagens = np.delete(imagens, np.argwhere(imagens == imagemSorteada))
-            
-            imagem, pagina = math.modf(imagemSorteada / 42.0)
-            imagem = round(imagem * 42)
+    qntImagens = obterQuantidadeDeImagens(origUrl, obterQuantidadeDePaginas(html))
+    imagens = np.arange(0, qntImagens)
 
-            # CONSTROI URL
-            url = origUrl + '&pid=' + str((pagina - 1) * 42)
+    imagemSorteada = int(np.random.choice(imagens, 1))
+    #REMOVE DA LISTA DE IMAGENS
+    imagens = np.delete(imagens, np.argwhere(imagens == imagemSorteada))
+    
+    imagem, pagina = math.modf(imagemSorteada / 42.0)
+    imagem = round(imagem * 42)
 
-            # OBTEM HTML(1) E DEPOIS PEGA A PARTE DAS IMAGENS(2)
-            html = obterHTML(url)
-            element = str(html.findAll('div', class_ = 'thumbnail-container')).split('thumbnail-preview')[1:]
-            
-            element = str(element[imagem])
-            code = element[element.find(';id=') + 4:element.find('&amp;tags=')]
-            url = 'https://gelbooru.com/index.php?page=post&s=view&id=' + code
-            print(url)
+    # CONSTROI URL
+    url = origUrl + '&pid=' + str((pagina - 1) * 42)
 
-            # URL DO POST RANDOMICO OBTIDO
-            html = obterHTML(url)
+    # OBTEM HTML(1) E DEPOIS PEGA A PARTE DAS IMAGENS(2)
+    html = obterHTML(url)
+    element = str(html.findAll('div', class_ = 'thumbnail-container')).split('thumbnail-preview')[1:]
+    
+    element = str(element[imagem])
+    code = element[element.find(';id=') + 4:element.find('&amp;tags=')]
+    urlPost = 'https://gelbooru.com/index.php?page=post&s=view&id=' + code
 
-            # GERA O LINK FINAL DA IMAGEM
-            img_link = str(html.findAll('meta', property = 'og:image'))
-            img_link = img_link[img_link.find('content') + 9:img_link.find('property') - 2]
+    # URL DO POST RANDOMICO OBTIDO
+    html = obterHTML(urlPost)
 
-            return img_link    
-    else:
-        return -1
+    # GERA O LINK FINAL DA IMAGEM
+    img_link = str(html.findAll('meta', property = 'og:image'))
+    img_link = img_link[img_link.find('content') + 9:img_link.find('property') - 2]
+
+    return {'linkPostOriginal':urlPost, 'enderecoFinal':img_link}
 
 class URL():
     def __init__(self, name, rating, tags):
@@ -99,4 +110,4 @@ class URL():
         self.rating = rating
         self.tags = tags
     def link(self):
-        self.url = obterImagemRandomica(obterURL(self.name, self.rating, self.tags))
+        self.resultado = obterImagemRandomica(obterURL(self.name, self.rating, self.tags))

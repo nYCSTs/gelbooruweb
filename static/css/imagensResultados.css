@@ -1,0 +1,39 @@
+body {
+    background: url('../image/wallpaper-resultados.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+a {
+    color: blue;
+    text-decoration: underline;
+}
+
+@media (max-width: 450px) {
+    body {
+        background: url("../image/wallpaper-smartphone.jpg") center center fixed;
+        background-size: cover;
+        background-position: center center;  
+        background-size: cover; 
+    }
+    
+    h1 {
+        font-size: 32px;
+    }
+
+    .barra-pesquisa {
+        font-size: 18px;
+        padding: 0 15px;
+    }
+
+    .tags {
+        width: 250px;
+    }
+}
