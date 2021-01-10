@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
+
 @app.route('/', methods = ['POST', 'GET'])
 def index():
     if (request.method == 'POST'):
@@ -14,28 +15,17 @@ def index():
         name = request.form['nome'].strip()
         rating = request.form['rating'].strip()
         tags = request.form['tags'].split(', ')
-        quantidade = int(request.form['quantidade'])
+        #quantidade = int(request.form['quantidade'])
 
         gelbooru = URL(name = name, rating = rating, tags = tags)
+        gelbooru.link()
+        resultados = gelbooru.resultado
 
-        if (quantidade == '1'):
-            gelbooru.link()
-            resultados.append(gelbooru.resultado)
-            if (resultados[-1] == -1):
-                return '<h1 style="text-align: center;">Personagem invalido clique <a href="/">aqui</a> para voltar.<br>Experimente inverter o nome do personagem/anime.</h1>'
-            webbrowser.open(resultado['enderecoFinal'])
-            
-        else:
-            for i in range(quantidade):
-                gelbooru.link()
-                resultados.append(gelbooru.resultado)
-                if (resultados[-1] == -1):
-                    return '<h1 style="text-align: center;">Personagem invalido clique <a href="/">aqui</a> para voltar.<br>Experimente inverter o nome do personagem/anime.</h1>'
-                webbrowser.open(resultados[-1]['enderecoFinal'])
-                if (i != quantidade):
-                    time.sleep(3)
-            
-        return render_template('imagensResultados.html', resultados = resultados)
+        if (resultados == -1):
+            return '<h1 style="text-align: center;">Personagem invalido clique <a href="/">aqui</a> para voltar.<br>Experimente inverter o nome do personagem/anime.</h1>'
+
+        return redirect(resultados['enderecoFinal'])
+        #return render_template('imagensResultados.html', resultados = resultados)
     else:
         return render_template('index.html')
 
