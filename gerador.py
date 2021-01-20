@@ -27,7 +27,7 @@ def obterURL(name, rating, tags):
         if (len(name) == 2):
             parteNome = arrumarSimbolos(name[1] + '_' + name[0]) + '+'
             url = origUrl + parteNome + rating + parteTags
-            if (verificarValidade(url)):
+            if (verificarValidade(obterHTML(url))):
                 return url
     return -1
 

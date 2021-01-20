@@ -4,73 +4,81 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    color: black;
-    font-weight: bold;
 }
 
+/* POSICIONAMENTO */
 .content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 90vh;
+    min-height: 85vh;
 }
 
-h1 {
-    font-size: 42px;
-}
-
+/* H1 */
 a {
-    text-decoration: none;
     color: black;
 }
 
-input {
-    margin: 5px;
+a:hover {
+    text-decoration: none !important;
 }
 
 .barra-pesquisa {
-    font-size: 20px;
-    color: black;
+    margin-top: 15px;
+}
+
+input {
+    font-size: 16px;
 }
 
 .tags {
-    width: 400px;
+    width: 360px;
 }
 
-.pesquisar {
-    height:20px; 
-    width:90px;
-    cursor: pointer;
-    margin-top: 8px;
-    width: 80px;
-    border: solid 1px;
-    border-radius: 5px;
+.btn {
+    padding: 3px 8px;
 }
 
 label {
     padding-right: 2px;
-}
-
-.pesquisar:hover {
-    background-color: dodgerblue;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .nome {
-    width: 250px;
+    width: 240px;
 }
 
+/* SELECT */
+.custom-select {
+    width: 160px;
+    height: 28px;
+    padding: 1px 24px 1px 12px;
+}
+
+.quantidade {
+    width: 60px;
+}
+
+.bloco {
+    height: 30px;
+    margin: 0 12px 16px 0;
+}
+
+/* BOTÃO PEQUISAR TAG */
 .buscador {
     background-color: Transparent;
-    background-repeat:no-repeat;
     border: solid 1px;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
+    cursor: pointer;
     border-radius: 12px;
-    font-size: 16px;
-    text-align: right;
+    font-size: 18px;
+    margin: 10px;
+}
+
+.bloco-desktop {
+    display: inline-flex;
 }
 
 @media (max-width: 450px) {
@@ -80,17 +88,26 @@ label {
         background-position: center center;  
         background-size: cover; 
     }
-    
-    h1 {
-        font-size: 32px;
-    }
 
-    .barra-pesquisa {
-        font-size: 18px;
-        padding: 0 15px;
+    h1 {
+        font-size: 38px;
     }
 
     .tags {
-        width: 250px;
+        width: 280px;
+    }
+
+    .bloco-desktop, .bloco-mobile {
+        display: block;
+    }
+
+    .bloco {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 350px) {
+    .tags {
+        width: 240px;
     }
 }

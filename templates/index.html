@@ -12,34 +12,47 @@
   </form>
 </nav>
 
-<div class='content'>
+<div class='content conteiner-fluid'>
   <h1> <a href='/'>Gelbooru Searcher </a></h1>  
+
   <div class='barra-pesquisa'>
     <form method="POST"> 
-      <label for='nome'>Nome:</label>
-      <input class='nome' type='text' autocomplete="off" name='nome' placeholder="Vazio para não especificar">
-      <label for='rating'>Rating:</label>
-      <select name='rating'>
-        <option value=''>Não especificar</option>
-        <option value="rating%3Asafe+">Seguro</option>
-        <option value="rating%3Aquestionable+">Questionavel</option>
-        <option value="rating%3Aexplicit+">Explicito</option>
-        <option value="-rating%3Asafe+">Ocultar Seguro</option>
-        <option value="-rating%3Aquestionable+">Ocultar Questionavel</option>
-        <option value="-rating%3Aexplicit+">Ocultar Explicito</option>
-      </select>
-      <br>
-      <label for='tags'>Tags:</label>
-      <input class='tags' type="text" autocomplete="off" name='tags' placeholder="Separe as tags com virgula">
-      <br>
-      <label for="quantidade">Quantidade: </label>
-      <select name="quantidade">
-        {% for i in range(1, 31) %}
-          <option value=' {{i}} '>{{i}}</option>
-        {% endfor %}
-      </select>
-      <br>
-      <input class='pesquisar' type='submit' value='Pesquisar' formtarget="_blank">
+      <div class='bloco-desktop'>
+        <div class='bloco'>
+          <label for='nome'>Nome:</label>
+          <input class='input-group-sm mb-3 nome' type='text' autocomplete="off" name='nome' placeholder="Vazio para não especificar">
+        </div>
+  
+        <div class='bloco'>
+          <label for='rating'>Rating:</label>
+          <select class='custom-select' name='rating'>
+            <option value=''>Não especificar</option>
+            <option value="rating%3Asafe+">Seguro</option>
+            <option value="rating%3Aquestionable+">Questionavel</option>
+            <option value="rating%3Aexplicit+">Explicito</option>
+            <option value="-rating%3Asafe+">Ocultar Seguro</option>
+            <option value="-rating%3Aquestionable+">Ocultar Questionavel</option>
+            <option value="-rating%3Aexplicit+">Ocultar Explicito</option>
+          </select>
+        </div>
+      </div>
+      
+
+      <div class='bloco'>
+        <label for='tags'>Tags:</label>
+       <input class='input-group-sm mb-3 tags' type="text" autocomplete="off" name='tags' placeholder="Separe as tags com virgula">
+      </div>
+
+      <div class='bloco'>
+        <label for="quantidade">Quantidade: </label>
+        <select class='custom-select quantidade' name="quantidade">
+          {% for i in range(1, 31) %}
+            <option value=' {{i}} '>{{i}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      
+      <input class='btn btn-dark' type='submit' value='Pesquisar' formtarget="_blank">
     </form>
   </div>
 </div>

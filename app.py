@@ -1,12 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
 from gerador import URL
-import webbrowser
 import time
 import requests
 from bs4 import BeautifulSoup
 
 app = Flask(__name__)
-
 
 @app.route('/', methods = ['POST', 'GET'])
 def index():
@@ -22,7 +20,7 @@ def index():
         resultados = gelbooru.resultado
 
         if (resultados == -1):
-            return '<h1 style="text-align: center;">Personagem invalido clique <a href="/">aqui</a> para voltar.<br>Experimente inverter o nome do personagem/anime.</h1>'
+            return '<h1 style="text-align: center;">Personagem invalido clique <a href="/">aqui</a> para voltar.<br>Experimente usar a <a href="https://gelboorusearcher.herokuapp.com/buscador">pesquisa de tags</a> para verificar pelo personagem desejado.</h1>'
 
         return redirect(resultados['enderecoFinal'])
         #return render_template('imagensResultados.html', resultados = resultados)

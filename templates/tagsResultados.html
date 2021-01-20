@@ -16,8 +16,9 @@
         </form>
     </div>
 
-    {% autoescape off %}
-        {{ html }}
-    {% endautoescape %}
-
+    <div class='resultado'>
+        {% autoescape off %}
+            {{ html }}
+        {% endautoescape %}
+    </div>
 {% endblock %}

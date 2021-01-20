@@ -5,6 +5,10 @@
 		padding: 0px;
 	}
 
+	.highlightable {
+		pointer-events: none;
+	}
+
 	body {
 		color: #000;
 		font-family: verdana, sans-serif, helvetica;
@@ -30,6 +34,10 @@
 	.mainBodyPadding {
 		padding: 10px 20px 20px 20px;
 	}
+
+	.resultado {
+		padding: 0 12px;
+	}
 	
 	.botao {
 		background-color: Transparent;
@@ -39,10 +47,9 @@
 		overflow: hidden;
 		outline:none;
 		border-radius: 12px;
-		width: 60px;
+		width: 68px;
 		font-weight: bold;
 		margin: 5px;
-		
 	}
 
 	.titulo {
