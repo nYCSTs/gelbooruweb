@@ -20,7 +20,7 @@ def index():
         gelbooru.link()
         resultados = gelbooru.resultado
 
-        sys.stdout.write(f'name: {name} | rating: {rating} | tags: {tags}')
+        sys.stdout.write(f'name: {name} | rating: {rating} | tags: {tags} ')
 
         if (resultados == -1):
             return '<h1 style="text-align: center;">Personagem invalido clique <a href="/">aqui</a> para voltar.<br>Experimente usar a <a href="https://gelboorusearcher.herokuapp.com/buscador">pesquisa de tags</a> para verificar pelo personagem desejado.</h1>'
@@ -34,10 +34,10 @@ def index():
 @app.route('/buscador', methods = ['POST', 'GET'])
 def buscarTag():
     if request.method == 'POST':
-        tag = request.form['campo-busca']
+        tag = request.form['campo-busca'].replace(" ", "_")
         url = 'https://gelbooru.com/index.php?page=tags&s=list&tags=' + tag + '*&sort=desc&order_by=index_count'
         
-        sys.stdout.write(f'search: {tag}')
+        sys.stdout.write(f'search: {tag} ')
 
         r = requests.get(url)
         html = BeautifulSoup(r.text, 'html.parser')
