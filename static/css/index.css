@@ -81,7 +81,7 @@ label {
     display: inline-flex;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 550px) {
     body {
         background: url("../image/wallpaper-smartphone.jpg") center center fixed;
         background-size: cover;
@@ -107,7 +107,20 @@ label {
 }
 
 @media (max-width: 350px) {
+    label {
+        font-size: 12px;
+    }
+
+    .nome {
+        width: 160px; 
+    }
+
     .tags {
-        width: 240px;
+        width: 200px;
+    }
+
+    .buscador {
+        font-size: 14px;
+        margin: 8px;
     }
 }

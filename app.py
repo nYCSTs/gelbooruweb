@@ -3,6 +3,7 @@ from gerador import URL
 import time
 import requests
 from bs4 import BeautifulSoup
+import sys
 
 app = Flask(__name__)
 
@@ -19,6 +20,8 @@ def index():
         gelbooru.link()
         resultados = gelbooru.resultado
 
+        sys.stdout.write(f'name: {name} | rating: {rating} | tags: {tags}')
+
         if (resultados == -1):
             return '<h1 style="text-align: center;">Personagem invalido clique <a href="/">aqui</a> para voltar.<br>Experimente usar a <a href="https://gelboorusearcher.herokuapp.com/buscador">pesquisa de tags</a> para verificar pelo personagem desejado.</h1>'
 
@@ -34,6 +37,8 @@ def buscarTag():
         tag = request.form['campo-busca']
         url = 'https://gelbooru.com/index.php?page=tags&s=list&tags=' + tag + '*&sort=desc&order_by=index_count'
         
+        sys.stdout.write(f'search: {tag}')
+
         r = requests.get(url)
         html = BeautifulSoup(r.text, 'html.parser')
         html = str(html.find_all('table', class_='highlightable')[0])
@@ -44,6 +49,3 @@ def buscarTag():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-# Adicionar pagina de ajuda
-# Adicionar pagina de tags         X
