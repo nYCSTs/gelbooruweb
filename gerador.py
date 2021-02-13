@@ -14,10 +14,11 @@ def arrumarSimbolos(name):
 
 #FORMA A URL
 def obterURL(name, rating, tags):
+    parteTags = ''
     origUrl = 'https://gelbooru.com/index.php?page=post&s=list&tags='
     parteNome = arrumarSimbolos(name.replace(' ', '_')) + '+' 
     for tag in tags:
-        parteTags = tag.strip().replace(' ', '_') + '+'
+        parteTags += tag.strip().replace(' ', '_') + '+'
 
     url = origUrl + parteNome + rating + parteTags
     if (verificarValidade(obterHTML(url))):
