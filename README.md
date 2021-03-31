@@ -1,9 +1,9 @@
 # gelbooruweb
 
 Buscador de imagens para o Gelbooru (booru).
-Feito utilizando Flask somente como meio de estudo.
+Feito utilizando Flask, somente como meio de estudo.
 
-# Utilização
+## Utilização
 
-O projeto foi hospedado utilizando o Herokuapp.
+O projeto está hospedado com o Herokuapp.
 https://gelboorusearcher.herokuapp.com/
